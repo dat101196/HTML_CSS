@@ -1,0 +1,69 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body>div {
+    margin: auto;
+}
+
+:root {
+    --btn-padding-ver: 12px;
+    --btn-padding-hor: 24px;
+    --btn-font-size: 1.5rem;
+    --btn-large-ratio: 1.25;
+    --btn-small-ratio: 0.75;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: var(--btn-padding-ver) var(--btn-padding-hor);
+    font-size: var(--btn-font-size);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* Dùng dấu + trong combine selector ý nghĩa trỏ đến selector sau dấu + mà đứng kế bên selector trước dấu + */
+
+/* Vd: trỏ đến class btn kế class btn - chỉ có button btn--warn và btn--danger được add css vì btn-warn có class btn và đứng kế btn-success có class btn, tương tự cho btn--danger */
+.btn+.btn {
+    margin-left: 16px;
+}
+
+.btn--success {
+    background-color: green;
+}
+
+.btn--warn {
+    background-color: goldenrod;
+}
+
+.btn--danger {
+    background-color: red;
+}
+
+.btn--disabled {
+    opacity: 0.5 !important;
+    cursor: default;
+}
+
+.btn--size-l {
+    padding: calc(var(--btn-padding-ver) * var(--btn-large-ratio)) calc(var(--btn-padding-hor) * var(--btn-large-ratio));
+    font-size: calc(var(--btn-font-size) * var(--btn-large-ratio));
+}
+
+.btn--size-s {
+    padding: calc(var(--btn-padding-ver) * var(--btn-small-ratio)) calc(var(--btn-padding-hor) * var(--btn-small-ratio));
+    font-size: calc(var(--btn-font-size) * var(--btn-small-ratio));
+}

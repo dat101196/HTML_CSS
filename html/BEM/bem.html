@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEM</title>
+    <style>
+        h3{
+            color: coral;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>BEM</h1>
+    <h3>-BEM là gì?</h3>
+    <p>BEM là tiêu chuẩn đặt tên class khi viết CSS</p>
+
+    <h3>-Ý nghĩa của BEM:</h3>
+    <p>Là viết tắt của Block Element Modifier</p>
+    <pre>Trong đó:
+    Block: khối (container/cha)
+    Element: thành phần trong khối (thành phần con)
+    Modifier: bổ sung ý nghĩa cho Block/Element
+    </pre>
+
+    <h3>-Ưu điểm:</h3>
+    <p>Tính rõ ràng: do quy định đặt tên class cụ thể nên nhìn vô có thể nhận biết rõ ràng class dùng làm gì </p>
+    <p>=> Giúp vả team làm việc với nhau dễ dàng</p>
+    <p>Tái sử dụng dễ dàng: không sợ trùng tên class khi sử dụng nhiều chỗ trong project</p>
+    <p>Tính module: không lo CSS của class này ảnh hưởng lên CSS của class khác</p>
+
+    <h3>-Nhược điểm:</h3>
+    <p>Tên class dài, phức tạp</p>
+
+    <h3>-Cú pháp:</h3>
+    <p>.block</p>
+    <p>.block__element(2 dấu _ liên tiếp ngăn cách block và element)</p>
+    <p>.block--modifier(2 dấu - liên tiếp ngắn cách block/element với modifier)</p>
+    <p>block__element--modifier</p>
+
+    <h3>-Ứng dụng</h3>
+    <p>Xây dựng layout website</p>
+    <p>Xây dựng thành phần trên website</p>
+</body>
+
+</html>
