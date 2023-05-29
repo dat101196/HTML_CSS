@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast message</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/BEM/toast_message.css">
+    <link rel="stylesheet" href="/css/BEM/button.css">
+</head>
+
+<body>
+    <div id="toast">
+        <!-- Success -->
+        <!-- <div class="toast toast--success">
+            <div class="toast__icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="toast__body">
+                <p class="toast__title">Success</p>
+                <p class="toast__msg">Tạo vận đơn thành công.</p>
+            </div>
+
+            <div class="toast__close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div> -->
+
+        <!-- Warning -->
+        <!-- <div class="toast toast--warning">
+            <div class="toast__icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="toast__body">
+                <p class="toast__title">Warning</p>
+                <p class="toast__msg">Tạo vận đơn thành công.Tạo vận đơn thành công.Tạo vận đơn thành công.</p>
+            </div>
+
+            <div class="toast__close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div> -->
+
+        <!-- Info -->
+        <!-- <div class="toast toast--info">
+            <div class="toast__icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="toast__body">
+                <p class="toast__title">Info</p>
+                <p class="toast__msg">Tạo vận đơn thành công.</p>
+            </div>
+
+            <div class="toast__close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div> -->
+
+        <!-- Error -->
+        <!-- <div class="toast toast--error">
+            <div class="toast__icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="toast__body">
+                <p class="toast__title">Error</p>
+                <p class="toast__msg">Tạo vận đơn thành công.</p>
+            </div>
+
+            <div class="toast__close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div> -->
+    </div>
+    <div id="button-area">
+        <button id="btnSuccess" class="btn btn--success btn--size-s">Show success toast</button>
+        <button id="btnError" class="btn btn--danger btn--size-s">Show error toast</button>
+        <button id="btnInfo" class="btn btn--info btn--size-s">Show info toast</button>
+        <button id="btnWarning" class="btn btn--warn btn--size-s">Show warning toast</button>
+    </div>
+    <script>
+        function toast({
+            title = '',
+            message = '',
+            type = 'info',
+            duration = 3000 }) {
+            const main = document.getElementById('toast');
+            if (main) {
+                const toastFadeOutDuration = 1000;
+                const toastDelay = (duration / 1000).toFixed(2);
+                const toast = document.createElement('div');
+
+                const autoRemoveToastID = setTimeout(() => {
+                    toast.remove();
+                }, duration + toastFadeOutDuration - 100);
+
+                toast.onclick = function (e) {
+                    if (e.target.closest('.toast__close')) {
+                        toast.remove();
+                        clearTimeout(autoRemoveToastID);
+                    }
+                }
+                toast.classList.add('toast', `toast--${type}`);
+                toast.style.animation = `slideInLeft ease 0.3s, fadeOut linear ${(toastFadeOutDuration / 1000).toFixed(2)}s ${toastDelay}s`;
+                const icons = {
+                    success: '<i class="fa-solid fa-circle-check"></i>',
+                    error: '<i class="fa-solid fa-circle-xmark"></i>',
+                    warning: '<i class="fa-solid fa-circle-exclamation"></i>',
+                    info: '<i class="fa-solid fa-circle-info"></i>',
+                }
+                const icon = icons[type];
+                toast.innerHTML =
+                    `<div class="toast__icon">
+                        ${icon}
+                    </div>
+        
+                    <div class="toast__body">
+                        <p class="toast__title">${title}</p>
+                        <p class="toast__msg">${message}</p>
+                    </div>
+        
+                    <div class="toast__close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>`;
+                main.appendChild(toast);
+            }
+        }
+
+        const successClick = function (event) {
+            toast({
+                title: 'Success',
+                message: 'Tạo vận đơn thành công.',
+                type: 'success',
+                duration: 3000
+            });
+        };
+        const btnSuccess = document.getElementById('btnSuccess');
+        btnSuccess.addEventListener('click', successClick);
+
+        const errorClick = function (event) {
+            toast({
+                title: 'Error',
+                message: 'Tạo vận đơn thất bại.',
+                type: 'error',
+                duration: 3000
+            });
+        }
+        const btnError = document.getElementById('btnError');
+        btnError.addEventListener('click', errorClick);
+
+        const infoClick = function (event) {
+            toast({
+                title: 'Info',
+                message: 'Đây là trang dùng để tạo vận đơn.',
+                type: 'info',
+                duration: 2000
+            });
+        }
+        const btnInfo = document.getElementById('btnInfo');
+        btnInfo.addEventListener('click', infoClick);
+
+        const warningClick = function (event) {
+            toast({
+                title: 'Warning',
+                message: 'Các ô thông tin cần phải có dữ liệu.',
+                type: 'warning',
+                duration: 2000
+            });
+        }
+        const btnWarning = document.getElementById('btnWarning');
+        btnWarning.addEventListener('click', warningClick);
+    </script>
+</body>
+
+</html>
